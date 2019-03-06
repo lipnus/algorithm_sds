@@ -3,9 +3,9 @@ package 테스트;
 public class Main {
     public static void main(String[] args){
 
-
-        int hashCode = getHashCode("lipnus");
-        System.out.println( hashCode );
+        System.out.println(1/2);
+//        int hashCode = getHashCode("lipnus");
+//        System.out.println( hashCode );
     }
 
      static int getHashCode(String key) {
