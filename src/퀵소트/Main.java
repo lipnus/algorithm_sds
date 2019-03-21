@@ -48,6 +48,7 @@ public class Main {
     }
 
 
+
     static void print(int[] arr){
         for(int a: arr){
             System.out.printf("%d ", a);
