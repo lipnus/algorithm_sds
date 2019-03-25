@@ -1,18 +1,35 @@
 package 테스트;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 public class Main {
     public static void main(String[] args){
 
-        System.out.println(1/2);
+        PriorityQueue<Test> pq = new PriorityQueue<>();
+
+        pq.add(new Test(1));
+        pq.add(new Test(3));
+        pq.add(new Test(5));
+
+        System.out.println(pq.poll().a);
 
     }
 
-     static int getHashCode(String key) {
-        int hashCode = 0;
-        for(char c : key.toCharArray()) {
-            hashCode += c;
+
+
+    static class Test implements Comparable<Test> {
+        int a;
+
+        Test(int a){
+            this.a = a;
         }
-        return hashCode;
+
+        @Override
+        public int compareTo(Test o) {
+            if(this.a < o.a) return -1;
+            else return 1;
+        }
     }
 
 
