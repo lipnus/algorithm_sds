@@ -1,3 +1,4 @@
+package 사다리조작;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -43,17 +44,19 @@ public class Main {
             }
         }
 
+
         //원본 확인
         if(checkLadder(ladder)){
             System.out.println(0);
             return;
         }
 
+        //1~3개 확인
         int size = rows.size();
         if (size>3) size = 3;
 
         for(int i=1; i<=size; i++){
-            rec(0, i, 0, new Stack<>());
+            rec(0, i, 0, ladder);
             if(minLadder < i) break; //이미 종결나서 해봐야 소용없음
         }
 
@@ -64,25 +67,17 @@ public class Main {
     }
 
 
-    static void rec(int n, int limit, int target, Stack<Row> s){
+    static void rec(int n, int limit, int target, int[][] ladder){
 
         if(n==limit){
-            int[][] cLadder = copyLadder();
-            for(Row r: s){
-                cLadder[r.n][r.m] = 1;
-            }
-
-            if(checkLadder(cLadder)==true){
-                minLadder = limit;
-            }
+            if(checkLadder(ladder)==true) minLadder = limit;
             return;
         }
 
-
         for(int i=target; i<rows.size(); i++){
-            s.push(rows.get(i));
-            rec(n+1, limit, i+1, s);
-            s.pop();
+            ladder[rows.get(i).n][rows.get(i).m]=1;
+            rec(n+1, limit, target+1, ladder);
+            ladder[rows.get(i).n][rows.get(i).m]=0;
         }
     }
 
@@ -96,6 +91,7 @@ public class Main {
             }
         }
         return true;
+
     }
 
 
